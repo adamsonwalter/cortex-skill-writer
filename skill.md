@@ -20,7 +20,6 @@ description: Generate Claude Skills using Cortex Architecture pattern. Factors s
 | **Translation Layer** | `protocols/translation_layer.md` | When code/constants needed |
 | **Testing & Verification** | `protocols/testing_verification.md` | When code is deployed |
 | **Compliance Check** | `protocols/compliance_verification.md` | At skill completion |
-| **Deployment** | `protocols/skill_deployment.md` | Before Claude.ai upload |
 | **Presentation** | `standards/skill_format.md` | During file output |
 | **Templates** | `templates/` | For boilerplate |
 
