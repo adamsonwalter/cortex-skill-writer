@@ -13,12 +13,25 @@
 ---
 name: [lowercase-hyphenated-name]
 description: [Under 200 chars. Include trigger words, file types, task contexts.]
-version: [semver]
-dependencies: [optional, for API-based skills]
+license: [optional, e.g., MIT]
+allowed-tools: [optional, list of tools skill can use]
+compatibility: [optional, version compatibility]
+metadata: [optional, object for additional metadata like version]
 ---
 ```
 
-### Name Rules
+### Allowed Frontmatter Keys (STRICT)
+
+| Key | Required | Description |
+|-----|----------|-------------|
+| `name` | ✅ | Skill identifier (lowercase, hyphens) |
+| `description` | ✅ | What skill does, when to use |
+| `license` | ❌ | License type |
+| `allowed-tools` | ❌ | Tool restrictions |
+| `compatibility` | ❌ | Version compatibility |
+| `metadata` | ❌ | Additional metadata object |
+
+> ⚠️ **CRITICAL**: `version` is NOT an allowed key. Put version in `metadata` or in the markdown body.
 - Lowercase letters only
 - Hyphens for word separation
 - No underscores, spaces, or special characters
