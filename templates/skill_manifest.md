@@ -1,7 +1,6 @@
 ---
 name: [skill-name]
 description: [Under 200 chars. Describe what this skill does and when Claude should use it. Include trigger contexts like file types, task types, or domain keywords.]
-version: 1.0.0
 ---
 
 # [Skill Name] - Claude SKILL Manifest

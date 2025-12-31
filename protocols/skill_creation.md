@@ -61,12 +61,15 @@ Create the following structure:
 
 ### Required Sections
 
-1. **YAML Frontmatter** (7 lines)
+1. **YAML Frontmatter** (4 lines)
+
+> ⚠️ **ALLOWED KEYS ONLY**: `name`, `description`, `license`, `allowed-tools`, `compatibility`, `metadata`
+> **NOT ALLOWED**: `version`, `dependencies`, or any other keys
+
 ```yaml
 ---
 name: [skill-name]
 description: [Under 200 chars. Include trigger contexts.]
-version: 1.0.0
 ---
 ```
 
