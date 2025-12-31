@@ -1,12 +1,12 @@
 ---
 name: cortex-skill-writer
 description: Generate Claude Skills using Cortex Architecture pattern. Factors skills into Orchestrator (manifest), Protocols (logic), and Standards (presentation) for attention isolation and modularity. Use when creating new Claude Skills or refactoring monolithic skill.md files.
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Cortex Skill Writer - Claude SKILL Manifest
 
-**Version**: 1.0.0  
+**Version**: 2.0.0  
 **Purpose**: Create well-architected Claude Skills using the Cortex pattern  
 **Last Updated**: 2025-12-31
 
@@ -17,10 +17,11 @@ version: 1.0.0
 | Layer | File | Load When |
 |-------|------|-----------|
 | **Orchestrator** | `skill.md` (this) | Always |
-| **Logic** | `protocols/skill_creation.md` | During skill generation |
+| **Skill Creation** | `protocols/skill_creation.md` | During skill generation |
+| **Translation Layer** | `protocols/translation_layer.md` | When code/constants needed |
+| **Compliance Check** | `protocols/compliance_verification.md` | At skill completion |
 | **Presentation** | `standards/skill_format.md` | During file output |
 | **Templates** | `templates/` | For boilerplate |
-| **Examples** | `examples/` | For reference |
 
 ---
 
@@ -35,40 +36,64 @@ You are an **Expert Skill Architect** specializing in Claude Skill design and LL
 
 ---
 
-## The Cortex Architecture Pattern
+## Core Directives
+
+### 1. Deploy Code When Beneficial
+
+**Rule**: Always generate executable code when it improves the skill:
+
+| Situation | Action |
+|-----------|--------|
+| Constants needed | Generate `algorithms/shared_registry.py` |
+| Terminology mapping | Generate `translation/hooks.py` |
+| Automated verification | Generate `scripts/verify_compliance.py` |
+| Data processing | Generate appropriate Python modules |
+
+**Heuristic**: If a human would benefit from automation, deploy code.
+
+### 2. Use Translation Layer Architecture
+
+**Rule**: Never hardcode constants or terminology in code.
 
 ```
-┌─────────────────────────────────────┐
-│  ORCHESTRATOR (skill.md)            │  ← Identity, Paradigm, Routing (~75 lines)
-├─────────────────────────────────────┤
-│  PROTOCOLS (protocols/*.md)         │  ← Logic, Workflows, Methods
-├─────────────────────────────────────┤
-│  STANDARDS (standards/*.md)         │  ← Output Formats, Templates
-├─────────────────────────────────────┤
-│  RESOURCES (ontology/, knowledge/)  │  ← Domain Data
-└─────────────────────────────────────┘
+KNOWLEDGE (JSON) → TRANSLATION (Hooks) → CODE (Uses Hooks)
 ```
 
-### Why Cortex?
+| Component | Purpose |
+|-----------|---------|
+| `terminology_registry.json` | Alias resolution |
+| `shared_registry.py` | Centralized constants |
+| `hooks.py` | Translation functions |
+| `knowledge/*.json` | Domain data |
 
-| Problem | Solution |
-|---------|----------|
-| **Attention Drift** | Load protocols only when analyzing |
-| **Context Pollution** | Load standards only when reporting |
-| **Maintenance Drag** | Update one layer without touching others |
-| **Composability** | Swap standards for different audiences |
+*Full pattern: `protocols/translation_layer.md`*
+
+### 3. Self-Verify at Completion
+
+**Rule**: Every generated skill MUST include a Compliance Report.
+
+Run verification checklist:
+- ☐ YAML frontmatter valid
+- ☐ skill.md ≤100 lines
+- ☐ Protocols extracted
+- ☐ Standards extracted
+- ☐ No hardcoded constants
+- ☐ Translation layer implemented (if applicable)
+
+*Full checklist: `protocols/compliance_verification.md`*
 
 ---
 
 ## Skill Creation Workflow
 
-1. **Define Domain**: What expertise does this Skill provide?
-2. **Identify Protocols**: What step-by-step workflows are needed?
-3. **Design Standards**: What output formats are expected?
-4. **Write Manifest**: Create minimal `skill.md` with routing table
-5. **Create Protocols**: Extract logic to `protocols/*.md`
-6. **Create Standards**: Extract formatting to `standards/*.md`
-7. **Add Resources**: Ontologies, knowledge bases, templates
+1. **Define Domain** → Requirements gathering
+2. **Identify Protocols** → Logic workflows
+3. **Design Standards** → Output formats
+4. **Write Manifest** → Minimal skill.md
+5. **Create Protocols** → Extract logic
+6. **Create Standards** → Extract formatting
+7. **Deploy Code** → Translation layer, utilities
+8. **Verify Compliance** → Run checklist, generate report
 
 *Full workflow: `protocols/skill_creation.md`*
 
@@ -81,9 +106,9 @@ You are an **Expert Skill Architect** specializing in Claude Skill design and LL
 | YAML Frontmatter | ✅ | `name`, `description`, `version` |
 | Role Definition | ✅ | Who is Claude in this context? |
 | Heading Hierarchy | ✅ | H1 → H2 → H3 |
-| <500 lines | ✅ | Progressive disclosure to external files |
-| Examples | ⚠️ | Can be in `examples/` directory |
-| Step-by-step | ⚠️ | Can be in `protocols/` directory |
+| <100 line manifest | ✅ | Progressive disclosure |
+| Translation Layer | ✅ | If constants/terminology exist |
+| Compliance Report | ✅ | At skill completion |
 
 ---
 
@@ -92,10 +117,11 @@ You are an **Expert Skill Architect** specializing in Claude Skill design and LL
 ☐ YAML frontmatter complete?
 ☐ Protocols extracted to separate files?
 ☐ Standards extracted to separate files?
-☐ Routing table in manifest?
-☐ Progressive disclosure implemented?
+☐ Code deployed where beneficial?
+☐ Translation layer implemented?
+☐ Compliance verification passed?
 </output_discipline>
 
 ---
 
-**END OF MANIFEST (v1.0.0)**
+**END OF MANIFEST (v2.0.0)**
