@@ -1,7 +1,6 @@
 ---
 name: cortex-skill-writer
 description: Generate Claude Skills using Cortex Architecture pattern. Factors skills into Orchestrator (manifest), Protocols (logic), and Standards (presentation) for attention isolation and modularity. Use when creating new Claude Skills or refactoring monolithic skill.md files.
-version: 2.0.0
 ---
 
 # Cortex Skill Writer - Claude SKILL Manifest
