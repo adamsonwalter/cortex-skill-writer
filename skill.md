@@ -19,6 +19,7 @@ version: 2.0.0
 | **Orchestrator** | `skill.md` (this) | Always |
 | **Skill Creation** | `protocols/skill_creation.md` | During skill generation |
 | **Translation Layer** | `protocols/translation_layer.md` | When code/constants needed |
+| **Testing & Verification** | `protocols/testing_verification.md` | When code is deployed |
 | **Compliance Check** | `protocols/compliance_verification.md` | At skill completion |
 | **Presentation** | `standards/skill_format.md` | During file output |
 | **Templates** | `templates/` | For boilerplate |
